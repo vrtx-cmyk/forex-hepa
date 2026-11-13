@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Forex Hepa | جاري التحويل إلى تيليغرام</title>
+  <meta name="description" content="انضم مجانا إلى مجتمع Forex Hepa على تيليغرام: تحليلات يومية، نقاشات حية، وشروحات للمبتدئين بدون أي اشتراك.">
+  <meta name="theme-color" content="#050505">
+  <meta name="robots" content="noindex, nofollow">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+  <link rel="apple-touch-icon" href="assets/images/favicon.svg">
+
+  <!-- Google Fonts: Cairo (Preconnected for instant paint) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@500;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Shared Site Configuration -->
+  <script src="js/config.js"></script>
+
+  <!-- Meta Pixel Code -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+
+    try {
+      var metaId = (window.SITE_CONFIG && window.SITE_CONFIG.metaPixelId) || '';
+      if (metaId) {
+        fbq('init', metaId);
+        fbq('track', 'PageView');
+      }
+    } catch(err) {
+      console.warn('[Pixel init error]', err);
+    }
+  </script>
+
+  <style>
+    /* --------------------------------------------------------------------------
+       RESET & ROOT VARIABLES
+       -------------------------------------------------------------------------- */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    :root {
+      --bg-color: #050505;
+      --text-primary: #FFFFFF;
+      --text-secondary: #A3A3A3;
+      --text-muted: #737373;
+      --text-disclaimer: #525252;
+      --border-subtle: rgba(255, 255, 255, 0.12);
+      --border-highlight: rgba(255, 255, 255, 0.4);
+      --bullish: #10B981;
+      --bearish: #EF4444;
+      --radius-pill: 9999px;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      min-height: 100vh;
+      min-height: 100dvh;
+      max-height: 100dvh;
+      overflow: hidden;
+      background-color: var(--bg-color);
+      color: var(--text-primary);
+      font-family: 'Cairo', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      direction: rtl;
+      text-align: center;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Candlestick Canvas Background */
+    #candlestick-canvas {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Ambient Glow Orb */
+    .ambient-glow {
+      position: fixed;
+      top: 42%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 340px;
+      height: 340px;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* --------------------------------------------------------------------------
+       LAYOUT CONTAINER (Strict 0 scroll on 360x640)
+       -------------------------------------------------------------------------- */
+    .page-container {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      height: 100vh;
+      height: 100dvh;
+      max-width: 440px;
+      margin: 0 auto;
+      padding: 16px 20px 12px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* Centered Main Area */
+    .main-content {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      flex: 1 1 auto;
+    }
+
+    /* Circular Forex Hepa Logo */
+    .brand-avatar {
+      position: relative;
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      border: 1.5px solid var(--border-highlight);
+      box-shadow: 0 0 25px rgba(255, 255, 255, 0.18), 0 4px 14px rgba(0, 0, 0, 0.7);
+      background: #0A0A0A;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      flex-shrink: 0;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .brand-avatar__img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+
+    .brand-avatar__fallback {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      color: #FFFFFF;
+    }
+
+    /* Brand Name */
+    .brand-name {
+      margin-top: 6px;
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #FFFFFF;
+      line-height: 1.2;
+    }
+
+    .brand-name__accent {
+      color: #FFFFFF;
+      font-weight: 900;
+      opacity: 0.9;
+    }
+
+    /* 100% Free Badge */
+    .badge-free {
+      margin-top: 8px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-pill);
+      padding: 4px 12px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #E5E5E5;
+      letter-spacing: -0.01em;
+    }
+
+    .badge-free__dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: var(--bullish);
+      box-shadow: 0 0 6px var(--bullish);
+      display: inline-block;
+    }
+
+    /* Countdown Section */
+    .countdown-section {
+      margin-top: 14px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .countdown-label {
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      line-height: 1.3;
+    }
+
+    /* Monospace Tabular Numerals (ZERO WIDTH JUMP) */
+    .countdown-timer {
+      margin-top: 4px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-variant-numeric: tabular-nums;
+      font-feature-settings: "tnum" 1;
+      font-size: clamp(2.1rem, 7.5vw, 2.5rem);
+      font-weight: 900;
+      letter-spacing: 0.06em;
+      color: #FFFFFF;
+      text-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+      line-height: 1.1;
+      direction: ltr; /* Keeps HH:MM:SS format stable in RTL */
+      display: inline-block;
+    }
+
+    /* CTA Section */
+    .cta-container {
+      margin-top: 14px;
+      width: 100%;
+      max-width: 320px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Big White CTA Button with Soft White Glow + Gentle Pulse */
+    .btn-cta {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      min-height: 52px;
+      padding: 12px 20px;
+      background: #FFFFFF;
+      color: #0A0A0A;
+      font-size: 1.12rem;
+      font-weight: 900;
+      border: none;
+      border-radius: var(--radius-pill);
+      box-shadow: 0 8px 25px rgba(255, 255, 255, 0.22), 0 2px 8px rgba(0, 0, 0, 0.5);
+      cursor: pointer;
+      text-decoration: none;
+      user-select: none;
+      overflow: hidden;
+      animation: ctaShakeAndPulse 3.8s infinite ease-in-out;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+    }
+
+    .btn-cta:hover {
+      animation-play-state: paused;
+      transform: translateY(-1px) scale(1.02);
+      box-shadow: 0 12px 30px rgba(255, 255, 255, 0.35), 0 4px 12px rgba(0,0,0,0.5);
+      filter: brightness(1.04);
+    }
+
+    .btn-cta:active {
+      transform: translateY(1px) scale(0.98);
+    }
+
+    .btn-cta__icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px;
+      height: 30px;
+      background: rgba(10, 10, 10, 0.12);
+      border-radius: 50%;
+      flex-shrink: 0;
+      color: #0A0A0A;
+    }
+
+    .btn-cta__icon svg {
+      width: 17px;
+      height: 17px;
+    }
+
+    .btn-cta__text {
+      font-weight: 900;
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+    }
+
+    /* Shimmer Overlay */
+    .btn-cta::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(
+        60deg,
+        transparent 30%,
+        rgba(255, 255, 255, 0.6) 50%,
+        transparent 70%
+      );
+      transform: rotate(30deg);
+      animation: ctaShimmer 4.5s infinite linear;
+      pointer-events: none;
+    }
+
+    @keyframes ctaShimmer {
+      0% { transform: translateX(-100%) rotate(30deg); }
+      35%, 100% { transform: translateX(100%) rotate(30deg); }
+    }
+
+    @keyframes ctaShakeAndPulse {
+      0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 8px 25px rgba(255, 255, 255, 0.22), 0 2px 8px rgba(0, 0, 0, 0.5);
+      }
+      20% {
+        transform: scale(1.025);
+        box-shadow: 0 12px 32px rgba(255, 255, 255, 0.35), 0 4px 12px rgba(0, 0, 0, 0.5);
+      }
+      24% { transform: scale(1.025) rotate(-0.5deg); }
+      28% { transform: scale(1.025) rotate(0.5deg); }
+      32% { transform: scale(1.025) rotate(0); }
+      40% {
+        transform: scale(1);
+        box-shadow: 0 8px 25px rgba(255, 255, 255, 0.22), 0 2px 8px rgba(0, 0, 0, 0.5);
+      }
+    }
+
+    /* Trust Line */
+    .trust-line {
+      margin-top: 8px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      letter-spacing: -0.01em;
+    }
+
+    .trust-line .separator {
+      color: #404040;
+    }
+
+    /* Store Note */
+    .store-note {
+      margin-top: 6px;
+      font-size: 0.73rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      line-height: 1.35;
+    }
+
+    .store-note a {
+      color: #FFFFFF;
+      text-decoration: underline;
+      text-decoration-color: rgba(255, 255, 255, 0.4);
+      font-weight: 700;
+      transition: color 0.2s, text-decoration-color 0.2s;
+    }
+
+    .store-note a:hover {
+      color: #FFFFFF;
+      text-decoration-color: #FFFFFF;
+    }
+
+    /* Fallback Alert if app not installed on Android */
+    .install-alert {
+      display: none;
+      margin-top: 10px;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 12px;
+      padding: 10px 14px;
+      animation: fadeInAlert 0.3s ease-out forwards;
+    }
+
+    @keyframes fadeInAlert {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .install-alert__msg {
+      font-size: 0.75rem;
+      color: #D4D4D8;
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+
+    .btn-store {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      width: 100%;
+      min-height: 38px;
+      padding: 6px 14px;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: var(--radius-pill);
+      color: #FFFFFF;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .btn-store:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-store svg {
+      width: 15px;
+      height: 15px;
+    }
+
+    /* Footer */
+    .page-footer {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 6px;
+      flex-shrink: 0;
+    }
+
+    .disclaimer-text {
+      font-size: 0.62rem;
+      line-height: 1.35;
+      color: var(--text-disclaimer);
+      max-width: 320px;
+      margin-bottom: 6px;
+    }
+
+    .footer-links {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      font-size: 0.72rem;
+      font-weight: 700;
+    }
+
+    .footer-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .footer-link:hover {
+      color: #FFFFFF;
+    }
+
+    .footer-link svg {
+      width: 13px;
+      height: 13px;
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HTML5 Canvas: Subtle faint animated candlesticks (Red/Green only) -->
+  <canvas id="candlestick-canvas"></canvas>
+
+  <!-- Ambient Glow -->
+  <div class="ambient-glow" aria-hidden="true"></div>
+
+  <!-- Single Screen Container -->
+  <div class="page-container">
+
+    <!-- Centered Brand & Action Area -->
+    <main class="main-content">
+      
+      <!-- Circular Forex Hepa Logo -->
+      <div class="brand-avatar" title="Forex Hepa">
+        <img 
+          src="assets/images/forex-hepa-avatar.jpg" 
+          alt="Forex Hepa Logo" 
+          class="brand-avatar__img" 
+          id="brand-avatar-img"
+          onerror="this.style.display='none'; document.getElementById('avatar-svg-fallback').style.display='flex';"
+        >
+        <div class="brand-avatar__fallback" id="avatar-svg-fallback">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="30" height="30">
+            <path d="M3 3v18h18"/>
+            <path d="m19 9-5 5-4-4-3 3"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Brand Name -->
+      <div class="brand-name">Forex <span class="brand-name__accent">Hepa</span></div>
+
+      <!-- 100% Free Badge -->
+      <div class="badge-free">
+        <span class="badge-free__dot"></span>
+        <span>مجموعة مجانية 100%</span>
+      </div>
+
+      <!-- Countdown Text + Monospace Tabular Numerals -->
+      <div class="countdown-section">
+        <span class="countdown-label">سيتم تحويلك إلى تيليغرام خلال</span>
+        <div class="countdown-timer" id="countdown-timer" aria-live="polite">00:00:06</div>
+      </div>
+
+      <!-- CTA Container -->
+      <div class="cta-container">
+        
+        <!-- Big White CTA Button -->
+        <a 
+          href="https://t.me/forexhepa_support" 
+          class="btn-cta" 
+          id="cta-btn"
+          data-cta-location="go_landing_page"
+        >
+          <span class="btn-cta__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.75-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .37z"/>
+            </svg>
+          </span>
+          <span class="btn-cta__text">انضم للمجموعة مجانا</span>
+        </a>
+
+        <!-- Trust Features -->
+        <div class="trust-line">
+          <span>بدون تسجيل</span>
+          <span class="separator">•</span>
+          <span>بدون دفع</span>
+          <span class="separator">•</span>
+          <span>دخول فوري</span>
+        </div>
+
+        <!-- Telegram App Store Note -->
+        <div class="store-note" id="store-note">
+          يلزمك تطبيق تيليغرام. ما عندكش؟ <a href="https://telegram.org/apps" id="store-link" target="_blank" rel="noopener noreferrer">حمّله مجانا من هنا</a>
+        </div>
+
+        <!-- Android App Not Installed Alert / Fallback Button -->
+        <div class="install-alert" id="install-alert" role="alert">
+          <div class="install-alert__msg">يبدو أن تطبيق تيليغرام غير مثبت على هاتفك.</div>
+          <a href="https://play.google.com/store/apps/details?id=org.telegram.messenger" id="install-store-btn" class="btn-store" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="7 10 12 15 17 10"/>
+              <line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+            <span>تحميل تيليغرام مجانا</span>
+          </a>
+        </div>
+
+      </div>
+
+    </main>
+
+    <!-- Tiny Footer -->
+    <footer class="page-footer">
+      <p class="disclaimer-text">
+        تداول الفوركس ينطوي على مخاطر عالية وقد تخسر جزءا من رأس المال. المحتوى لأغراض تعليمية فقط. لا نضمن أي أرباح.
+      </p>
+      <div class="footer-links">
+        <a href="https://t.me/forexhepa_support" class="footer-link" id="support-link" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 18v-6a9 9 0 0 1 18 0v6"/>
+            <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>
+          </svg>
+          <span>الدعم الفني</span>
+        </a>
+        <a href="https://www.instagram.com/adamou__1/" class="footer-link" id="instagram-link" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+          </svg>
+          <span>Instagram</span>
+        </a>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- Vanilla JS Engine -->
+  <script>
+    // --------------------------------------------------------------------------
+    // 1. CONSTANTS & USER CONFIG
+    // --------------------------------------------------------------------------
+    const COUNTDOWN_SECONDS = 6;
+
+    (function() {
+      'use strict';
+
+      const cfg = window.SITE_CONFIG || {};
+      const TELEGRAM_TARGET_USERNAME = cfg.telegramSupportUsername || "forexhepa_support";
+      const TELEGRAM_TARGET_URL = cfg.telegramSupportUrl || "https://t.me/forexhepa_support";
+      const INSTAGRAM_URL = cfg.instagramUrl || "https://www.instagram.com/adamou__1/";
+      const STORE_LINKS = cfg.storeLinks || {
+        ios: "https://apps.apple.com/app/telegram-messenger/id686449807",
+        android: "https://play.google.com/store/apps/details?id=org.telegram.messenger",
+        desktop: "https://telegram.org/apps"
+      };
+
+      // --------------------------------------------------------------------------
+      // 2. DEVICE & PLATFORM DETECTION
+      // --------------------------------------------------------------------------
+      function isIOS() {
+        const ua = navigator.userAgent || navigator.vendor || window.opera || '';
+        const platform = navigator.platform || '';
+        const isAppleDevice = /iPad|iPhone|iPod/i.test(ua);
+        const isIPadOS = (/Macintosh/i.test(ua) || platform === 'MacIntel') && (navigator.maxTouchPoints > 1);
+        return isAppleDevice || isIPadOS;
+      }
+
+      function isAndroid() {
+        const ua = navigator.userAgent || navigator.vendor || window.opera || '';
+        return /Android/i.test(ua);
+      }
+
+      function isInAppBrowser() {
+        const ua = navigator.userAgent || navigator.vendor || window.opera || '';
+        return /Instagram|FBAN|FBAV|Snapchat|TikTok/i.test(ua);
+      }
+
+      function getStoreUrl() {
+        if (isIOS()) return STORE_LINKS.ios;
+        if (isAndroid()) return STORE_LINKS.android;
+        return STORE_LINKS.desktop;
+      }
+
+      // --------------------------------------------------------------------------
+      // 3. TRACKING PARAMETERS (PRESERVED FOR PIXEL, NEVER APPENDED TO T.ME)
+      // --------------------------------------------------------------------------
+      function getQueryParams() {
+        const params = {};
+        try {
+          const search = window.location.search.substring(1);
+          if (search) {
+            const pairs = search.split('&');
+            for (let i = 0; i < pairs.length; i++) {
+              const pair = pairs[i].split('=');
+              const key = decodeURIComponent(pair[0]);
+              const value = decodeURIComponent(pair[1] || '');
+              if (key) params[key] = value;
+            }
+          }
+        } catch (e) {
+          console.warn('Error parsing params', e);
+        }
+        return params;
+      }
+
+      const queryParams = getQueryParams();
+      try {
+        if (Object.keys(queryParams).length > 0) {
+          sessionStorage.setItem('forex_hepa_utm', JSON.stringify(queryParams));
+        }
+      } catch (e) {}
+
+      // --------------------------------------------------------------------------
+      // 4. META PIXEL TRACKING ("Lead" WITH trigger = "click" | "auto")
+      // --------------------------------------------------------------------------
+      function trackLead(triggerType) {
+        const storedUtm = (() => {
+          try {
+            return JSON.parse(sessionStorage.getItem('forex_hepa_utm') || '{}');
+          } catch (e) {
+            return {};
+          }
+        })();
+
+        const eventPayload = {
+          content_name: 'Forex Hepa Telegram Join',
+          content_category: 'Forex Community',
+          page_location: 'go_landing_page',
+          trigger: triggerType, // "click" or "auto"
+          ...storedUtm,
+          ...queryParams
+        };
+
+        if (typeof window.fbq === 'function') {
+          try {
+            window.fbq('track', 'Lead', eventPayload);
+            console.log('[Tracking] Meta Pixel Lead fired, trigger:', triggerType);
+          } catch (err) {
+            console.warn('[Tracking] Meta Pixel Lead error:', err);
+          }
+        }
+
+        if (typeof window.gtag === 'function') {
+          try {
+            window.gtag('event', 'generate_lead', {
+              event_category: 'Community',
+              event_label: `go_${triggerType}`,
+              value: 1
+            });
+          } catch (err) {}
+        }
+      }
+
+      // --------------------------------------------------------------------------
+      // 5. DOM ELEMENTS SETUP
+      // --------------------------------------------------------------------------
+      const ctaBtn = document.getElementById('cta-btn');
+      const timerEl = document.getElementById('countdown-timer');
+      const storeLink = document.getElementById('store-link');
+      const installAlert = document.getElementById('install-alert');
+      const installStoreBtn = document.getElementById('install-store-btn');
+      const supportLink = document.getElementById('support-link');
+      const instagramLink = document.getElementById('instagram-link');
+
+      const storeUrl = getStoreUrl();
+      if (storeLink) storeLink.setAttribute('href', storeUrl);
+      if (installStoreBtn) installStoreBtn.setAttribute('href', storeUrl);
+      if (supportLink) supportLink.setAttribute('href', TELEGRAM_TARGET_URL);
+      if (instagramLink) instagramLink.setAttribute('href', INSTAGRAM_URL);
+      if (ctaBtn) ctaBtn.setAttribute('href', TELEGRAM_TARGET_URL);
+
+      // --------------------------------------------------------------------------
+      // 6. REDIRECT STATE & ENGINE
+      // --------------------------------------------------------------------------
+      let remainingSeconds = COUNTDOWN_SECONDS;
+      let redirectExecuted = false;
+      let countdownIntervalId = null;
+      let isWaitingForAndroidCheck = false;
+      let androidTimeoutId = null;
+      let visibilityListener = null;
+
+      function formatTime(sec) {
+        const s = Math.max(0, Math.floor(sec));
+        const hours = String(Math.floor(s / 3600)).padStart(2, '0');
+        const minutes = String(Math.floor((s % 3600) / 60)).padStart(2, '0');
+        const seconds = String(s % 60).padStart(2, '0');
+        return `${hours}:${minutes}:${seconds}`;
+      }
+
+      function cancelAutoRedirect() {
+        if (countdownIntervalId) {
+          clearInterval(countdownIntervalId);
+          countdownIntervalId = null;
+        }
+      }
+
+      function executeRedirect(triggerType, event) {
+        // Guard: Never fire twice, never loop
+        if (redirectExecuted) {
+          if (event && isAndroid()) event.preventDefault();
+          return;
+        }
+
+        redirectExecuted = true;
+        cancelAutoRedirect();
+
+        // Fire Meta Pixel Lead event with custom trigger
+        trackLead(triggerType);
+
+        const cleanTargetUrl = TELEGRAM_TARGET_URL;
+
+        // CASE 1: iOS -> Plain https://t.me link, NO tg://
+        if (isIOS()) {
+          if (triggerType === 'click' && event) {
+            return; // Allow native navigation to plain link
+          }
+          window.location.href = cleanTargetUrl;
+          return;
+        }
+
+        // CASE 2: IN-APP BROWSERS -> Plain https://t.me link, NO tg://
+        if (isInAppBrowser()) {
+          if (triggerType === 'click' && event) {
+            return; // Allow native navigation
+          }
+          window.location.href = cleanTargetUrl;
+          return;
+        }
+
+        // CASE 3: DESKTOP / OTHER NON-ANDROID -> Plain https://t.me link, NO tg://
+        if (!isAndroid()) {
+          if (triggerType === 'click' && event) {
+            return; // Allow native navigation
+          }
+          window.location.href = cleanTargetUrl;
+          return;
+        }
+
+        // CASE 4: ANDROID -> tg:// deep link with Page Visibility check and fallback
+        if (event) {
+          event.preventDefault();
+        }
+
+        if (isWaitingForAndroidCheck) return;
+        isWaitingForAndroidCheck = true;
+
+        const deepLink = `tg://resolve?domain=${TELEGRAM_TARGET_USERNAME}`;
+        let appOpened = false;
+
+        function onAppOpened() {
+          appOpened = true;
+          cleanupAndroidCheck();
+        }
+
+        visibilityListener = function() {
+          if (document.hidden) onAppOpened();
+        };
+        const pageHideListener = function() { onAppOpened(); };
+        const blurListener = function() { onAppOpened(); };
+
+        document.addEventListener('visibilitychange', visibilityListener);
+        window.addEventListener('pagehide', pageHideListener);
+        window.addEventListener('blur', blurListener);
+
+        function cleanupAndroidCheck() {
+          if (androidTimeoutId) {
+            clearTimeout(androidTimeoutId);
+            androidTimeoutId = null;
+          }
+          document.removeEventListener('visibilitychange', visibilityListener);
+          window.removeEventListener('pagehide', pageHideListener);
+          window.removeEventListener('blur', blurListener);
+          isWaitingForAndroidCheck = false;
+        }
+
+        // Trigger Android deep link
+        window.location.href = deepLink;
+
+        // Check fallback after 1500 ms
+        androidTimeoutId = setTimeout(function() {
+          if (appOpened || document.hidden) {
+            cleanupAndroidCheck();
+            return;
+          }
+
+          cleanupAndroidCheck();
+
+          // App did not open: freeze countdown on 00:00:00 and display store button
+          if (timerEl) timerEl.textContent = "00:00:00";
+          if (installAlert) {
+            installAlert.style.display = 'block';
+          }
+        }, 1500);
+      }
+
+      // --------------------------------------------------------------------------
+      // 7. COUNTDOWN TIMER & EVENT BINDINGS
+      // --------------------------------------------------------------------------
+      if (timerEl) {
+        timerEl.textContent = formatTime(remainingSeconds);
+      }
+
+      countdownIntervalId = setInterval(function() {
+        remainingSeconds--;
+        if (timerEl) {
+          timerEl.textContent = formatTime(remainingSeconds);
+        }
+
+        if (remainingSeconds <= 0) {
+          cancelAutoRedirect();
+          executeRedirect('auto', null);
+        }
+      }, 1000);
+
+      // Cancel auto-redirect if user taps manually
+      if (ctaBtn) {
+        ctaBtn.addEventListener('click', function(e) {
+          executeRedirect('click', e);
+        });
+      }
+
+      // Cancel auto-redirect if tab goes to background
+      document.addEventListener('visibilitychange', function() {
+        if (document.hidden && !redirectExecuted) {
+          cancelAutoRedirect();
+        }
+      });
+
+      // --------------------------------------------------------------------------
+      // 8. ANIMATED FAINT CANDLESTICKS (HTML5 CANVAS)
+      // --------------------------------------------------------------------------
+      function initCandlestickCanvas() {
+        const canvas = document.getElementById('candlestick-canvas');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        if (!ctx) return;
+
+        let width = 0;
+        let height = 0;
+        let animId = null;
+
+        function resize() {
+          const dpr = window.devicePixelRatio || 1;
+          width = window.innerWidth;
+          height = window.innerHeight;
+          canvas.width = width * dpr;
+          canvas.height = height * dpr;
+          ctx.scale(dpr, dpr);
+        }
+
+        window.addEventListener('resize', resize);
+        resize();
+
+        const candleCount = window.innerWidth < 480 ? 14 : 22;
+        const candles = [];
+        let basePrice = 2400;
+
+        for (let i = 0; i < candleCount; i++) {
+          const delta = (Math.random() - 0.46) * 14;
+          const open = basePrice;
+          const close = open + delta;
+          const high = Math.max(open, close) + Math.random() * 8;
+          const low = Math.min(open, close) - Math.random() * 8;
+          basePrice = close;
+          candles.push({
+            open,
+            close,
+            high,
+            low,
+            isBullish: close >= open,
+            phase: Math.random() * Math.PI * 2,
+            speed: 0.6 + Math.random() * 0.4
+          });
+        }
+
+        let time = 0;
+
+        function draw() {
+          ctx.clearRect(0, 0, width, height);
+
+          // Subtle background grid
+          ctx.strokeStyle = 'rgba(255, 255, 255, 0.025)';
+          ctx.lineWidth = 1;
+          const gridStepY = height / 7;
+          for (let y = gridStepY; y < height; y += gridStepY) {
+            ctx.beginPath();
+            ctx.moveTo(0, y);
+            ctx.lineTo(width, y);
+            ctx.stroke();
+          }
+
+          time += 0.012;
+          const stepX = width / (candles.length + 1);
+          const candleWidth = Math.min(8, Math.max(3.5, stepX * 0.32));
+          const points = [];
+
+          for (let i = 0; i < candles.length; i++) {
+            const c = candles[i];
+            const x = stepX * (i + 1);
+            const progress = i / (candles.length - 1);
+            const trendY = height * 0.68 - (progress * height * 0.36);
+            const floatOffset = Math.sin(time * c.speed + c.phase) * 6;
+            const y = trendY + floatOffset;
+            points.push({ x, y, c });
+          }
+
+          // Faint white trendline
+          ctx.strokeStyle = 'rgba(255, 255, 255, 0.06)';
+          ctx.lineWidth = 1.2;
+          ctx.beginPath();
+          for (let i = 0; i < points.length; i++) {
+            if (i === 0) ctx.moveTo(points[i].x, points[i].y);
+            else ctx.lineTo(points[i].x, points[i].y);
+          }
+          ctx.stroke();
+
+          // Candlestick bodies and wicks (Red/Green only, faint low opacity)
+          for (let i = 0; i < points.length; i++) {
+            const pt = points[i];
+            const c = pt.c;
+            const x = pt.x;
+            const y = pt.y;
+            const color = c.isBullish ? '#10B981' : '#EF4444';
+            const bodyH = 10 + Math.sin(time + c.phase) * 3;
+            const wickH = 22;
+
+            ctx.save();
+            ctx.globalAlpha = 0.16;
+
+            // Wick
+            ctx.strokeStyle = color;
+            ctx.lineWidth = 1.2;
+            ctx.beginPath();
+            ctx.moveTo(x, y - wickH / 2);
+            ctx.lineTo(x, y + wickH / 2);
+            ctx.stroke();
+
+            // Body
+            ctx.fillStyle = color;
+            ctx.fillRect(x - candleWidth / 2, y - bodyH / 2, candleWidth, bodyH);
+
+            ctx.restore();
+          }
+
+          if (!document.hidden) {
+            animId = requestAnimationFrame(draw);
+          }
+        }
+
+        animId = requestAnimationFrame(draw);
+
+        document.addEventListener('visibilitychange', function() {
+          if (!document.hidden && !animId) {
+            animId = requestAnimationFrame(draw);
+          } else if (document.hidden && animId) {
+            cancelAnimationFrame(animId);
+            animId = null;
+          }
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initCandlestickCanvas);
+      } else {
+        initCandlestickCanvas();
+      }
+    })();
+  </script>
+</body>
+</html>
